@@ -13,7 +13,7 @@
  * Author  lyazj (https://github.com/lyazj)                           *
  * Mail    seeson@pku.edu.cn                                          *
  * Create  Nov 10 2022                                                *
- * Modify  Nov 11 2022                                                *
+ * Modify  Nov 12 2022                                                *
  **********************************************************************/
 
 #include <inttypes.h>
@@ -23,6 +23,9 @@
 
 #define POSTFIX ".new.txt"
 #define TERMINATOR "\r\n"
+
+/* For mingwrt, this forces cmdline wildcard expanding. */
+int _CRT_glob = -1;
 
 #ifndef le32toh
 /* This function is portable and will probably compile to a bswap on
