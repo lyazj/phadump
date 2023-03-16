@@ -16,7 +16,7 @@
  * Modify  Nov 12 2022                                                *
  **********************************************************************/
 
-#include <inttypes.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <errno.h>
 #include <string.h>
@@ -91,8 +91,8 @@ static void convert(const char *path)
   }
   live = le32toh(live);
 
-  printf("converting: %-16s\t%4" PRIu32 " channels"
-      "\t%4" PRIu32 " live seconds\n", path, size, live);
+  printf("converting: %-16s\t%4u channels\t%4u live seconds\n",
+      path, (unsigned)size, (unsigned)live);
 
   /* transcript SIZE channel counter values */
   for(i = 0; i < size; ++i)
@@ -103,7 +103,7 @@ static void convert(const char *path)
       goto convert_cleanup_fout;
     }
     val = le32toh(val);
-    fprintf(fout, "%" PRIu32 TERMINATOR, val);
+    fprintf(fout, "%u" TERMINATOR, (unsigned)val);
   }
   /* trailing 8 bytes (if any) with unknown meaning discarded */
 
